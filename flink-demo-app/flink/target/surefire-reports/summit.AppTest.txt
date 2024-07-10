@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
 Test set: summit.AppTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.048 s - in summit.AppTest
-shouldAnswerWithTrue(summit.AppTest)  Time elapsed: 0.009 s
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.1 s - in summit.AppTest
+shouldAnswerWithTrue(summit.AppTest)  Time elapsed: 0.006 s

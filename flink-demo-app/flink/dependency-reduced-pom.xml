@@ -67,7 +67,7 @@
     <dependency>
       <groupId>org.apache.flink</groupId>
       <artifactId>flink-core</artifactId>
-      <version>1.19.1</version>
+      <version>1.15.4</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
@@ -81,22 +81,6 @@
         <exclusion>
           <artifactId>flink-shaded-asm-9</artifactId>
           <groupId>org.apache.flink</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>flink-shaded-jackson</artifactId>
-          <groupId>org.apache.flink</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>snakeyaml-engine</artifactId>
-          <groupId>org.snakeyaml</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>commons-text</artifactId>
-          <groupId>org.apache.commons</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>kryo</artifactId>
-          <groupId>com.esotericsoftware.kryo</groupId>
         </exclusion>
         <exclusion>
           <artifactId>commons-collections</artifactId>
@@ -115,7 +99,7 @@
     <dependency>
       <groupId>org.apache.flink</groupId>
       <artifactId>flink-streaming-java</artifactId>
-      <version>1.18.0</version>
+      <version>1.15.4</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
