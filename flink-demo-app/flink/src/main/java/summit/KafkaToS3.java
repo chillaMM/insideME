@@ -42,12 +42,9 @@ public class KafkaToS3 {
 
         final StreamingFileSink<String> sink = StreamingFileSink
                 .forRowFormat(new Path("s3a://dtpl-gds-summit3-processed-messages/test_folder/"), new SimpleStringEncoder<String>("UTF-8"))
+                .withBucketAssigner(new DateTimeBucketAssigner("yyyy-MM-dd--HH"))
                 .withRollingPolicy(
-                DefaultRollingPolicy.builder()
-            .withRolloverInterval(TimeUnit.MINUTES.toMillis(15))
-            .withInactivityInterval(TimeUnit.MINUTES.toMillis(5))
-            .withMaxPartSize(1024 * 1024 * 1024)
-            .build())
+                DefaultRollingPolicy.create().build())
                 .build();
 
         kafkaStream.addSink(sink);
