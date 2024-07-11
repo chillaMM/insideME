@@ -17,6 +17,7 @@ import org.apache.flink.streaming.api.functions.sink.filesystem.rollingpolicies.
 import org.apache.flink.api.common.serialization.SimpleStringEncoder;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
 
 public class KafkaToS3 {
     public static void main(String[] args) throws Exception {
@@ -33,13 +34,13 @@ public class KafkaToS3 {
         .setProperty("sasl.mechanism", "AWS_MSK_IAM")
         .setProperty("sasl.client.callback.handler.class", "software.amazon.msk.auth.iam.IAMClientCallbackHandler")
         .setProperty("sasl.jaas.config", "software.amazon.msk.auth.iam.IAMLoginModule required;")
-        .setProperty("auto.offset.reset", "earliest")
+        .setStartingOffsets(OffsetsInitializer.earliest())
         .setValueOnlyDeserializer(new SimpleStringSchema()).build();
 
         DataStream<String> kafkaStream = env.fromSource(kafkaConsumer, WatermarkStrategy.noWatermarks(),  "Kafka Source" );
 
         final StreamingFileSink<String> sink = StreamingFileSink
-                .forRowFormat(new Path("s3a://dtpl-gds-summit3-processed-messages/test_folder/"), new SimpleStringEncoder<String>("UTF-8"))
+                .<String>forRowFormat(new Path("s3a://dtpl-gds-summit3-processed-messages/test_folder/"), new SimpleStringEncoder<String>("UTF-8"))
                 .withBucketAssigner(new DateTimeBucketAssigner("yyyy-MM-dd--HH"))
                 .withRollingPolicy(
                 DefaultRollingPolicy.create().build())
