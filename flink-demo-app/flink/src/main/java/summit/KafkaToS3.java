@@ -38,7 +38,7 @@ public class KafkaToS3 {
         .setValueOnlyDeserializer(new SimpleStringSchema()).build();
 
         DataStream<String> kafkaStream = env.fromSource(kafkaConsumer, WatermarkStrategy.noWatermarks(),  "Kafka Source" );
-
+/* 
         final StreamingFileSink<String> sink = StreamingFileSink
                 .<String>forRowFormat(new Path("s3a://dtpl-gds-summit3-processed-messages/test_folder/"), new SimpleStringEncoder<String>("UTF-8"))
                 .withBucketAssigner(new DateTimeBucketAssigner("yyyy-MM-dd--HH"))
@@ -48,6 +48,8 @@ public class KafkaToS3 {
 
         kafkaStream.addSink(sink);
 
+*/
+        kafkaStream.print();
         env.execute("Flink Kafka to S3");
     }
 }
